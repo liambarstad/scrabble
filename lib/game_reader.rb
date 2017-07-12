@@ -7,6 +7,7 @@ class GameReader
     if score != 0
       read_score(str)
     else
+      score = check_if_bonus(str, score)
       score
     end
   end
@@ -16,6 +17,7 @@ class GameReader
     if score != 0
       score = read_score_with_multipliers(str, arr)
     end
+    score = check_if_bonus(str, score)
     score *= multiplier
   end
 
@@ -41,5 +43,13 @@ class GameReader
       score += (point_values[str[i].upcase] * arr[i])
     end
     score
+  end
+
+  def check_if_bonus(str, score)
+    if str.length > 6
+      score += 10
+    else
+      score
+    end
   end
 end
